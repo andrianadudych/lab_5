@@ -43,16 +43,6 @@ public:
     void DisplayInfo();
 };
 
-class FullProduct : virtual public ProductBase,virtual public BrandInfo,virtual public ColoredProduct {
-protected:
-    string type;
-    double price;
-public:
-    FullProduct(string id, string brand, string country, string color, string type, double price);
-    ~FullProduct() override;
-    void DisplayFullInfo();
-};
-
 class TypedProduct : virtual public ProductBase {
 protected:
     string productType;
@@ -69,6 +59,25 @@ public:
     VolumeProduct(string id, double volume);
     ~VolumeProduct() override;
     void DisplayVolume();
+};
+
+class MassProduct : virtual public ProductBase {
+    protected:
+    double mass;
+    public:
+    MassProduct(string id, double mass);
+    ~MassProduct() override;
+    void DisplayMass();
+};
+
+class FullProduct : public TypedProduct, public VolumeProduct, public MassProduct {
+protected:
+    string type;
+    double price;
+public:
+    FullProduct(string id, string brand, string country, string color, string type, double price);
+    virtual ~FullProduct();
+    void DisplayFullInfo();
 };
 
 class LuxuryProduct : public TypedProduct, public VolumeProduct {

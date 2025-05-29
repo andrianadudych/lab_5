@@ -54,9 +54,25 @@ void CosmeticProduct::DisplayInfo() {
 }
 
 FullProduct::FullProduct(string id, string brand, string country, string color, string type, double price)
-    : ProductBase(id), BrandInfo(brand, country), ColoredProduct(color), type(type), price(price) {
-    cout << "Конструктор повного продукту (" << type << ")\n";
+    : ProductBase(id),TypedProduct(id, type), VolumeProduct(id, 50.0), MassProduct(id, 0.3),
+      type(type), price(price) {
+
+    cout << "Конструктор FullProduct: (" << brand << ")\n";
 }
+
+MassProduct::MassProduct(string id, double mass)
+    : ProductBase(id), mass(mass) {
+    cout << "Конструктор MassProduct (" << mass << " кг)\n";
+}
+
+MassProduct::~MassProduct() {
+    cout << "Деструктор MassProduct (" << mass << " кг)\n";
+}
+
+void MassProduct::DisplayMass() {
+    cout << "Маса продукту: " << mass << " кг" << endl;
+}
+
 
 
 FullProduct::~FullProduct() {
@@ -65,10 +81,12 @@ FullProduct::~FullProduct() {
 
 void FullProduct::DisplayFullInfo() {
     DisplayId();
-    DisplayBrand();
-    DisplayColor();
-    cout << "Тип: " << type << "\nЦіна: " << price << " грн" << endl;
+    DisplayType();
+    DisplayVolume();
+    DisplayMass();
+    cout << "Тип (детально): " << type << "\nЦіна: " << price << " грн" << endl;
 }
+
 
 TypedProduct::TypedProduct(string id, string type)
     : ProductBase(id), productType(type) {

@@ -15,9 +15,10 @@ int main() {
 
 
     cout << "\n  Успадкування 3 батьківських класів \n";
-    FullProduct* full = new FullProduct("F001", "Maybelline", "США", "Червоний", "Тінь для повік", 300);
+    FullProduct* full = new FullProduct( "L001", "L'Oreal","Англія","Червоний", "Помада", 250) ;
     full->DisplayFullInfo();
     delete full;
+
 
     return 0;
 }
